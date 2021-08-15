@@ -1,0 +1,25 @@
+server:
+  port: 8080
+spring:
+  application:
+    name: kafa-demo-test
+  kafka:
+    # 配置连接到服务端集群的配置项 ip:port,ip:port
+    bootstrap-servers: 192.168.211.136:9092
+#    消费端的配置
+    consumer:
+      #      auto-commit-interval: 100
+      auto-offset-reset: earliest
+      enable-auto-commit: false #手动提交
+      group-id: test-consumer-group  #消费者组
+      # 默认值即为字符串
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer #反序列化 字符串
+      # 默认值即为字符串
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer  #反序列化 字符串
+#      生产端的配置
+    producer:
+      batch-size: 16384
+      buffer-memory: 33554432
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer  #序列化 字符串
+      retries: 0  #重试次数
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer   #序列化 字符串
